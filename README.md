@@ -25,7 +25,13 @@ blackjack-learner/
 ### Instalación
 
 1. Crear y activar un entorno virtual (opcional pero recomendado).
-2. Instalar dependencias:
+2. Instalar dependencias (preferentemente con `uv`):
+
+```bash
+uv pip sync
+```
+
+   Alternativa con `pip`:
 
 ```bash
 pip install -r requirements.txt
@@ -56,6 +62,19 @@ python main.py visualize --save plots/rewards.png --no-show
 ```bash
 python main.py play
 ```
+
+### Makefile y tooling
+
+- `make install` instala dependencias con uv por defecto (`PKG_MANAGER=pip` para usar pip).
+- `make install-dev` agrega dependencias de desarrollo (pytest, ruff, sympy).
+- `make test`, `make format` y `make lint` ejecutan pruebas básicas y formateo/lint con Ruff.
+- `make train EPISODES=2000`, `make visualize` y `make play` ejecutan los subcomandos del CLI.
+- `make docker-run` construye la imagen y la ejecuta, o usa `docker compose up --build` para un flujo equivalente.
+
+### Documentación adicional
+
+- `Agents.md` resume contexto, resultados y próximos pasos del agente.
+- La carpeta `docs/` contiene guías adicionales (`tooling.md`, `docker.md`) para nuevas implementaciones.
 
 ### Notas
 
