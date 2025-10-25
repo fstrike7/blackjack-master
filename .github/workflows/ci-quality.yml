@@ -1,0 +1,35 @@
+name: CI - Calidad y Seguridad
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lint-and-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: Install dependencies
+        run: |
+          uv pip sync
+          uv pip install -r requirements-dev.txt
+          uv pip install safety
+
+      - name: Ruff lint
+        run: uv run ruff check .
+
+      - name: Ruff format (check only)
+        run: uv run ruff format --check .
+
+      - name: Safety security scan
+        run: uv run safety check --full-report
