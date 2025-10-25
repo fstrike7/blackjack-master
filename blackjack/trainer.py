@@ -122,7 +122,9 @@ class BlackjackTrainer:
         done: bool,
     ) -> None:
         state_tensor = torch.tensor(list(state), dtype=torch.float32).unsqueeze(0)
-        next_state_tensor = torch.tensor(list(next_state), dtype=torch.float32).unsqueeze(0)
+        next_state_tensor = torch.tensor(
+            list(next_state), dtype=torch.float32
+        ).unsqueeze(0)
         action_tensor = torch.tensor([action], dtype=torch.long)
 
         with torch.no_grad():

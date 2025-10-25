@@ -33,7 +33,12 @@ def plot_reward_curve(
 
     plt.figure(figsize=(10, 5))
     plt.plot(df["episode"], df["total_reward"], label="Episode Reward", alpha=0.4)
-    plt.plot(df["episode"], df["rolling_reward"], label="Rolling Avg (window=50)", linewidth=2)
+    plt.plot(
+        df["episode"],
+        df["rolling_reward"],
+        label="Rolling Avg (window=50)",
+        linewidth=2,
+    )
     plt.xlabel("Episode")
     plt.ylabel("Reward")
     plt.title("Blackjack Learner - Reward Progression")

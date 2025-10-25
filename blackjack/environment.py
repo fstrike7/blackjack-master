@@ -29,7 +29,9 @@ class BlackjackEnv:
 
     ACTIONS: Tuple[str, str] = ("stand", "hit")
 
-    def __init__(self, seed: int | None = None, natural_blackjack_bonus: float = 1.5) -> None:
+    def __init__(
+        self, seed: int | None = None, natural_blackjack_bonus: float = 1.5
+    ) -> None:
         """Initialise the environment.
 
         Args:
@@ -75,7 +77,9 @@ class BlackjackEnv:
             ValueError: If called after the episode ended or with an invalid action.
         """
         if self.done:
-            raise ValueError("Cannot call step() on a finished episode. Call reset() first.")
+            raise ValueError(
+                "Cannot call step() on a finished episode. Call reset() first."
+            )
 
         action_index = self._normalise_action(action)
 

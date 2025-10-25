@@ -1,0 +1,38 @@
+name: CI - Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: Create virtual environment
+        run: uv venv
+
+      - name: Install dependencies
+        run: |
+          source .venv/bin/activate
+          uv pip sync pyproject.toml
+
+      - name: Install dev dependencies
+        run: |
+          source .venv/bin/activate
+          uv pip install -r requirements-dev.txt
+
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          PYTHONPATH=. uv run pytest
