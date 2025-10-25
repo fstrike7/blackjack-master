@@ -6,7 +6,7 @@ import csv
 import logging
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Iterable, List
+from typing import List
 
 
 RESULTS_HEADER = [
