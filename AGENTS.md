@@ -10,6 +10,7 @@ El proyecto **blackjack-learner** entrena un agente basado en PyTorch para apren
 - Registro de métricas por episodio en `data/results.csv`.
 - Visualización de recompensas con `visualization/graphs.py`.
 - Automatizaciones para instalar dependencias, ejecutar pruebas y formatear código con `Makefile`.
+- Gestión de dependencias centralizada en `pyproject.toml`, que debe reflejar cualquier cambio antes de ejecutar `uv pip sync` (el archivo se usa como `--from` predeterminado).
 
 ### Próximos pasos sugeridos
 
