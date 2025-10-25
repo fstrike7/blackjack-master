@@ -4,11 +4,11 @@
 
 1. Instalar dependencias básicas:
    ```bash
-   uv pip sync
+   uv pip sync pyproject.toml
    ```
-2. Instalar dependencias de desarrollo (pytest, ruff, sympy):
+2. Instalar dependencias de desarrollo (pytest, ruff):
    ```bash
-   uv pip sync
+   uv pip sync pyproject.toml
    uv pip install -r requirements-dev.txt
    ```
 3. En caso de preferir `pip`, usar `make install PKG_MANAGER=pip`.
@@ -22,7 +22,7 @@
 ### Pruebas
 
 - Ejecuta `make test` para validar importaciones básicas y cálculos de soporte.
-- Las pruebas utilizan `pytest` y `sympy`.
+- Las pruebas utilizan `pytest`.
 
 ### Recomendaciones
 

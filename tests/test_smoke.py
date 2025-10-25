@@ -1,7 +1,5 @@
 """Basic smoke tests to ensure core modules import correctly."""
 
-import sympy as sp
-
 from blackjack import BlackjackAgent, BlackjackEnv, BlackjackTrainer
 
 
@@ -24,9 +22,3 @@ def test_trainer_instantiation():
     agent = BlackjackAgent(state_size=3)
     trainer = BlackjackTrainer(env, agent)
     assert trainer.config.default_episodes > 0
-
-
-def test_sympy_available_for_calculations():
-    x = sp.symbols("x")
-    expr = sp.integrate(x, (x, 0, 1))
-    assert float(expr) == sp.Rational(1, 2)

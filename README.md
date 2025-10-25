@@ -28,7 +28,7 @@ blackjack-learner/
 2. Instalar dependencias (preferentemente con `uv`):
 
 ```bash
-uv pip sync
+uv pip sync pyproject.toml
 ```
 
    Alternativa con `pip`:

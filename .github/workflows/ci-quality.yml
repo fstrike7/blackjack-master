@@ -21,7 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip sync
+          uv pip sync pyproject.toml
           uv pip install -r requirements-dev.txt
           uv pip install safety
 
