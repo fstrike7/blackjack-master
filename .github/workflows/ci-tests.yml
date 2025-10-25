@@ -35,4 +35,4 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          uv run pytest
+          PYTHONPATH=. uv run pytest
