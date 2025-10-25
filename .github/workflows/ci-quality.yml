@@ -19,17 +19,27 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v2
 
+      - name: Create virtual environment
+        run: uv venv
+
       - name: Install dependencies
         run: |
+          source .venv/bin/activate
           uv pip sync pyproject.toml
           uv pip install -r requirements-dev.txt
           uv pip install safety
 
       - name: Ruff lint
-        run: uv run ruff check .
+        run: |
+          source .venv/bin/activate
+          uv run ruff check .
 
       - name: Ruff format (check only)
-        run: uv run ruff format --check .
+        run: |
+          source .venv/bin/activate
+          uv run ruff format --check .
 
       - name: Safety security scan
-        run: uv run safety check --full-report
+        run: |
+          source .venv/bin/activate
+          uv run safety check --full-report

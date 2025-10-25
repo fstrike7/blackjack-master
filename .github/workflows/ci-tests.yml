@@ -19,11 +19,20 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v2
 
+      - name: Create virtual environment
+        run: uv venv
+
       - name: Install dependencies
-        run: uv pip sync pyproject.toml
+        run: |
+          source .venv/bin/activate
+          uv pip sync pyproject.toml
 
       - name: Install dev dependencies
-        run: uv pip install -r requirements-dev.txt
+        run: |
+          source .venv/bin/activate
+          uv pip install -r requirements-dev.txt
 
       - name: Run tests
-        run: uv run pytest
+        run: |
+          source .venv/bin/activate
+          uv run pytest
