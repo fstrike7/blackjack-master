@@ -21,17 +21,33 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     train_parser = subparsers.add_parser("train", help="Train the Blackjack agent")
-    train_parser.add_argument("--episodes", type=int, default=1000, help="Number of training episodes")
-    train_parser.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility")
-    train_parser.add_argument("--learning-rate", type=float, default=1e-3, help="Optimizer learning rate")
-    train_parser.add_argument("--epsilon-decay", type=float, default=0.995, help="Exploration decay factor")
+    train_parser.add_argument(
+        "--episodes", type=int, default=1000, help="Number of training episodes"
+    )
+    train_parser.add_argument(
+        "--seed", type=int, default=None, help="Random seed for reproducibility"
+    )
+    train_parser.add_argument(
+        "--learning-rate", type=float, default=1e-3, help="Optimizer learning rate"
+    )
+    train_parser.add_argument(
+        "--epsilon-decay", type=float, default=0.995, help="Exploration decay factor"
+    )
 
     viz_parser = subparsers.add_parser("visualize", help="Visualise training metrics")
-    viz_parser.add_argument("--save", type=Path, default=None, help="Optional path to save the plot image")
-    viz_parser.add_argument("--no-show", action="store_true", help="Generate plot without displaying it")
+    viz_parser.add_argument(
+        "--save", type=Path, default=None, help="Optional path to save the plot image"
+    )
+    viz_parser.add_argument(
+        "--no-show", action="store_true", help="Generate plot without displaying it"
+    )
 
-    play_parser = subparsers.add_parser("play", help="Play a Blackjack round against the dealer")
-    play_parser.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility")
+    play_parser = subparsers.add_parser(
+        "play", help="Play a Blackjack round against the dealer"
+    )
+    play_parser.add_argument(
+        "--seed", type=int, default=None, help="Random seed for reproducibility"
+    )
 
     return parser
 
@@ -63,7 +79,9 @@ def run_play(args: argparse.Namespace) -> None:
     env = BlackjackEnv(seed=args.seed)
     ensure_results_file(RESULTS_PATH)
 
-    print("Starting a new Blackjack round. Enter 'hit' or 'stand'. Type 'quit' to exit.")
+    print(
+        "Starting a new Blackjack round. Enter 'hit' or 'stand'. Type 'quit' to exit."
+    )
     state = env.reset()
     _print_state(state, hide_dealer=False)
 

@@ -47,7 +47,9 @@ class BlackjackAgent(nn.Module):
         """Epsilon-greedy action selection."""
         if torch.rand(1).item() < epsilon:
             return torch.randint(0, self.action_size, (1,)).item()
-        state_tensor = torch.tensor(list(state), dtype=torch.float32, device=self.device).unsqueeze(0)
+        state_tensor = torch.tensor(
+            list(state), dtype=torch.float32, device=self.device
+        ).unsqueeze(0)
         with torch.no_grad():
             q_values = self.forward(state_tensor)
         return int(torch.argmax(q_values, dim=1).item())
